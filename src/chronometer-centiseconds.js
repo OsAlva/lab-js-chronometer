@@ -12,20 +12,27 @@ class Chronometer {
       if(printTimeCallback){
         printTimeCallback();
     }
-  }, 1000);
+  }, 10);
 
   }
 
   getMinutes() {
     // ... your code goes here
-    return Math.floor(this.currentTime/60);
+    return Math.floor(this.currentTime/6000);
     
   }
 
   getSeconds() {
     // ... your code goes here
-    return Math.floor(this.currentTime %60);
+    return Math.floor((this.currentTime/100)%60);
     
+    
+  }
+
+  getCentiseconds(){
+    //cuando ponemos un modulo es que se reinicie
+    return Math.floor((this.currentTime)%100);
+   
   }
 
   computeTwoDigitNumber(value) {
@@ -58,7 +65,8 @@ class Chronometer {
     // ... your code goes here
     const minutes = this.computeTwoDigitNumber(this.getMinutes());
     const seconds = this.computeTwoDigitNumber(this.getSeconds());
-    return `${minutes}:${seconds}`;
+    const mili = this.computeTwoDigitNumber(this.getCentiseconds());
+    return `${minutes}:${seconds}.${mili}`;
   }
 }
 
